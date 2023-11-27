@@ -1,5 +1,6 @@
 # medical_malpractice_analysis_python
 Inferential statistics with python scripts for the medical malpractice claims dataset
+
 "According to a recent study published in the US News and World Report the cost of medical malpractice in the United States is $55.6 billion a year, which is 2.4 percent of annual health-care spending. Another 2011 study published in the New England Journal of Medicine revealed that annually, during the period 1991 to 2005, 7.4% of all physicians licensed in the US had a malpractice claim. These staggering numbers not only contribute to the high cost of health care, but the size of successful malpractice claims also contributes to high premiums for medical malpractice insurance.
 The data set contains information about the last 79210 claim payments made.
 •	Amount - Amount of the claim payment in dollars
