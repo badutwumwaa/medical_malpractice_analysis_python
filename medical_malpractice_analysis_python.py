@@ -92,12 +92,6 @@ else:
 
     	
 There is not a significant difference between the severity levels between males and females in medical malpractice cases
-n1=1000
-n2=1000
-_, critical_value = mannwhitneyu([1000], [1000], alternative='two-sided')
-print("Critical Value:", critical_value)
-Critical Value: 1.0
-_, critical_value = mannwhitneyu([severity_male],[severity_female], alternative='two-sided')
 
 plt.bar(x=medical_malpractice['age'], height=medical_malpractice['severity'])
 
@@ -131,19 +125,6 @@ age_sample=medical_malpractice['age'].sample(n=1000,random_state=20)
 correlation_coefficient,p_value=stats.kendalltau(severity_sample,age_sample)
 print(correlation_coefficient,p_value)
 -0.03689895647491782 0.11230638559871647
-print(medical_malpractice.info)
-<bound method DataFrame.info of        amount severity  age  ...  date_of_case     id Gender_Binary
-0       48010        3   23  ...    2022-10-01  16386             1
-1      107944        3   58  ...    2022-10-01  16845             0
-2      396035        5   35  ...    2022-10-01  17391             0
-3       96331        3   13  ...    2022-10-01  17943             0
-4       75996        7   65  ...    2021-10-01  50914             1
-...       ...      ...  ...  ...           ...    ...           ...
-79205  161908        2   38  ...    2019-10-01  79205             0
-79206   25305        4   64  ...    2019-10-01  79206             1
-79207   43098        3   87  ...    2019-10-01  79207             1
-79208   35398        3   81  ...    2019-10-01  79208             1
-79209  154228        9   19  ...    2019-10-01  79209             0
 
 [79210 rows x 11 columns]>
 print(medical_malpractice.columns)
@@ -159,42 +140,8 @@ alpha=0.05
 stat,p_value=stats.mannwhitneyu(sample_private_attorney_yes,sample_private_attorney_no)
 print(stat,p_value)
 706217.0 2.0855183198196458e-57
-sample_severity_widowed=(medical_malpractice.loc[medical_malpractice['marital_status']==3]['severity']).sample(n=100,random_state=20)
 
-sample_severity_widowed=medical_malpractice.loc[medical_malpractice['marital_status']==3]['severity'].sample(n=100,random_state=20)
-
-sample_severity_widowed=(medical_malpractice.loc[medical_malpractice['marital_status']==3]['severity'])
-  
-print(sample_severity_widowed)
-  
-Series([], Name: severity, dtype: category
-Categories (9, int64): [1, 2, 3, 4, ..., 6, 7, 8, 9])
-medical_malpractice['severity']=medical_malpractice['severity'].astype('integer']
-  
-
-medical_malpractice['severity']=medical_malpractice['severity'].astype('integer')
-  
-
-medical_malpractice['severity'] = medical_malpractice['severity'].astype('int
-
-                                                                         
-
-medical_malpractice['severity'] = medical_malpractice['severity'].astype('int')
-                                                                         
-
-sample_severity_widowed=(medical_malpractice.loc[medical_malpractice['marital_status']==3]['severity']).sample(n=100,random_state=20)
-                                                                         
-
-print(medical_malpractice.loc[medical_malpractice['marital_status']==3]['severity'])
-  
-Series([], Name: severity, dtype: int32)
-print(medical_malpractice.loc[medical_malpractice['marital_status']==3,'severity'])
-  
-Series([], Name: severity, dtype: int32)
 filepath=r'C:\Users\Beatrice\Documents\medical_malpractice.csv'
-  
-df=pd.DataFrame(filepath)
-  
 
 df=pd.read_csv(filepath)
 medical_malpractice=pd.DataFrame(df)
@@ -413,7 +360,6 @@ Index(['Amount', 'Severity', 'Age', 'Private_Attorney', 'Marital_Status',
        'Specialty', 'Insurance', 'Gender', 'Insurance_nominal', 'Age_Groups',
        'severity_log', 'insurance_nominal', 'log_amount', 'specialty_integer'],
       dtype='object')
-result = kruskal(*[group['Severity'] for name, group in medical_malpractice.groupby(['Insurance', 'Marital_Status'])])
 
 result = stats.kruskal(*[group['Severity'] for name, group in medical_malpractice.groupby(['Insurance', 'Marital_Status'])])
 print(result)
@@ -477,68 +423,8 @@ Index(['Amount', 'Severity', 'Age', 'Private_Attorney', 'Marital_Status',
        'severity_log', 'insurance_nominal', 'log_amount', 'specialty_integer',
        'age_groups'],
       dtype='object')
-contingency_table = pd.crosstab(index=medical_malpractice['Marital_Status'], columns=medical_malpractice['Gender'], margins=True, normalize='index')
-for Marital_Status in contingency_table.index[:-1]:
-    for gender in contingency_table.columns[:-1]:
-        probability = contingency_table.loc[Marital_status, Gender]
-        print(f"Probability of severity levels for {Marital_Status} and {Gender}:\n")
-        severity_probabilities = medical_malpractice.loc[(medical_malpractice['Marital_Status'] == Marital_Status) & (medical_malpractice['Gender'] == Gender), 'Severity'].value_counts(normalize=True)
-        for severity, prob in severity_probabilities.items():
-            print(f"Severity {Severity}: {prob * probability:.2%}")
-            
-SyntaxError: multiple statements found while compiling a single statement
-contingency_table = pd.crosstab(index=medical_malpractice['Marital_Status'], columns=medical_malpractice['Gender'], margins=True, normalize='index')
-for Marital_Status in contingency_table.index[:-1]:
-    for gender in contingency_table.columns[:-1]:
-        probability = contingency_table.loc[Marital_status, Gender]
-        print(f"Probability of severity levels for {Marital_Status} and {Gender}:\n")
-        severity_probabilities = medical_malpractice.loc[(medical_malpractice['Marital_Status'] == Marital_Status) & (medical_malpractice['Gender'] == Gender), 'Severity'].value_counts(normalize=True)
-        for severity, prob in severity_probabilities.items():
-            print(f"Severity {Severity}: {prob * probability:.2%}")
+                                                                         
 
-                                                                         
-Traceback (most recent call last):
-  File "<pyshell#210>", line 3, in <module>
-    probability = contingency_table.loc[Marital_status, Gender]
-NameError: name 'Marital_status' is not defined. Did you mean: 'Marital_Status'?
-contingency_table = pd.crosstab(index=medical_malpractice['Marital_Status'], columns=medical_malpractice['Gender'], margins=True, normalize='index')
-for Marital_Status in contingency_table.index[:-1]:
-    for gender in contingency_table.columns[:-1]:
-        probability = contingency_table.loc[Marital_Status, Gender]
-        print(f"Probability of severity levels for {Marital_Status} and {Gender}:\n")
-        severity_probabilities = medical_malpractice.loc[(medical_malpractice['Marital_Status'] == Marital_Status) & (medical_malpractice['Gender'] == Gender), 'Severity'].value_counts(normalize=True)
-        for severity, prob in severity_probabilities.items():
-            print(f"Severity {Severity}: {prob * probability:.2%}")
-                                                                         
-SyntaxError: multiple statements found while compiling a single statement
-contingency_table = pd.crosstab(index=medical_malpractice['Marital_Status'], columns=medical_malpractice['Gender'], margins=True, normalize='index')
-for Marital_Status in contingency_table.index[:-1]:
-                                                                         
-SyntaxError: multiple statements found while compiling a single statement
-contingency_table = pd.crosstab(index=medical_malpractice['Marital_Status'], columns=medical_malpractice['Gender'], margins=True, normalize='index')
-                                                                         
-for Marital_Status in contingency_table.index[:-1]:
-    for gender in contingency_table.columns[:-1]:
-        probability = contingency_table.loc[Marital_Status, Gender]
-        print(f"Probability of severity levels for {Marital_Status} and {Gender}:\n")
-        severity_probabilities = medical_malpractice.loc[(medical_malpractice['Marital_Status'] == Marital_Status) & (medical_malpractice['Gender'] == Gender), 'Severity'].value_counts(normalize=True)
-        for severity, prob in severity_probabilities.items():
-        print(f"Severity {Severity}: {prob * probability:.2%}")
-                                                                         
-SyntaxError: expected an indented block after 'for' statement on line 6
-for Marital_Status in contingency_table.index[:-1]:
-    for gender in contingency_table.columns[:-1]:
-        probability = contingency_table.loc[Marital_Status, Gender]
-        print(f"Probability of severity levels for {Marital_Status} and {Gender}:\n")
-        severity_probabilities = medical_malpractice.loc[(medical_malpractice['Marital_Status'] == Marital_Status) & (medical_malpractice['Gender'] == Gender), 'Severity'].value_counts(normalize=True)
-        for severity, prob in severity_probabilities.items():
-            print(f"Severity {Severity}: {prob * probability:.2%}")
-
-                                                                         
-Traceback (most recent call last):
-  File "<pyshell#229>", line 3, in <module>
-    probability = contingency_table.loc[Marital_Status, Gender]
-NameError: name 'Gender' is not defined. Did you mean: 'gender'?
 bins=[0,43670,98131,926411]
                                                                          
 labels=['low_comp','moderate_comp','high_comp']
@@ -547,43 +433,26 @@ medical_malpractice['compensation_level']=pd.cut(medical_malpractice['Amount'],b
                                                                          
 contingency_table_amount=pd.crosstab(index=medical_malpractice['Private_Attorney'], columns=medical_malpractice['compensation_level'], margins=True, normalize='index')
                                                                          
-print(crontingency_table_amount)
                                                                          
-Traceback (most recent call last):
-  File "<pyshell#234>", line 1, in <module>
-    print(crontingency_table_amount)
-NameError: name 'crontingency_table_amount' is not defined. Did you mean: 'contingency_table_amount'?
-print(contingency_table_amount)
+
                                                                          
 compensation_level  low_comp  moderate_comp  high_comp
 Private_Attorney                                      
 0                   0.469863       0.184357   0.345780
 1                   0.137195       0.283673   0.579132
 All                 0.250006       0.249994   0.500000
-for Marital_Status in contingency_table.index[:-1]:
-    for Gender in contingency_table.columns[:-1]:
-        probability = contingency_table.loc[Marital_Status, Gender]
-        print(f"Probability of severity levels for {Marital_Status} and {Gender}:\n")
-        severity_probabilities = medical_malpractice.loc[(medical_malpractice['Marital_Status'] == Marital_Status) & (medical_malpractice['Gender'] == Gender), 'Severity'].value_counts(normalize=True)
-        for severity, prob in severity_probabilities.items():
-            print(f"Severity {Severity}: {prob * probability:.2%}")
 
-                                                                         
-Probability of severity levels for 0 and Female:
 
-Traceback (most recent call last):
-  File "<pyshell#237>", line 7, in <module>
-    print(f"Severity {Severity}: {prob * probability:.2%}")
-NameError: name 'Severity' is not defined. Did you mean: 'severity'?
+contingency_table = pd.crosstab(index=medical_malpractice['Marital_Status'], columns=medical_malpractice['Gender'], margins=True, normalize='index')                                                                         
 for Marital_Status in contingency_table.index[:-1]:
-    for Gender in contingency_table.columns[:-1]:
+    for Gender in contingency_table.columns[:]:
         probability = contingency_table.loc[Marital_Status, Gender]
         print(f"Probability of severity levels for {Marital_Status} and {Gender}:\n")
         severity_probabilities = medical_malpractice.loc[(medical_malpractice['Marital_Status'] == Marital_Status) & (medical_malpractice['Gender'] == Gender), 'Severity'].value_counts(normalize=True)
         for Severity, prob in severity_probabilities.items():
             print(f"Severity {Severity}: {prob * probability:.2%}")
 
-                                                                         
+            
 Probability of severity levels for 0 and Female:
 
 Severity 3: 10.83%
@@ -595,6 +464,15 @@ Severity 2: 0.97%
 Severity 6: 0.89%
 Severity 1: 0.44%
 Severity 7: 0.29%
+Probability of severity levels for 0 and Male:
+
+Severity 7: 22.21%
+Severity 9: 13.31%
+Severity 8: 11.80%
+Severity 4: 9.53%
+Severity 6: 6.34%
+Severity 3: 5.09%
+Severity 5: 2.17%
 Probability of severity levels for 1 and Female:
 
 Severity 3: 25.73%
@@ -606,6 +484,13 @@ Severity 6: 5.04%
 Severity 8: 3.87%
 Severity 2: 2.16%
 Severity 1: 0.96%
+Probability of severity levels for 1 and Male:
+
+Severity 3: 11.01%
+Severity 4: 3.66%
+Severity 7: 1.57%
+Severity 5: 0.74%
+Severity 9: 0.69%
 Probability of severity levels for 2 and Female:
 
 Severity 3: 18.53%
@@ -617,6 +502,15 @@ Severity 7: 2.81%
 Severity 8: 2.76%
 Severity 2: 1.60%
 Severity 1: 0.82%
+Probability of severity levels for 2 and Male:
+
+Severity 3: 15.01%
+Severity 7: 9.82%
+Severity 4: 8.77%
+Severity 9: 4.18%
+Severity 5: 3.43%
+Severity 8: 1.69%
+Severity 6: 0.95%
 Probability of severity levels for 3 and Female:
 
 Severity 3: 27.77%
@@ -628,6 +522,8 @@ Severity 2: 5.94%
 Severity 8: 5.23%
 Severity 1: 2.82%
 Severity 7: 2.21%
+Probability of severity levels for 3 and Male:
+
 Probability of severity levels for 4 and Female:
 
 Severity 3: 13.29%
@@ -639,3 +535,13 @@ Severity 6: 1.27%
 Severity 2: 0.89%
 Severity 1: 0.60%
 Severity 7: 0.44%
+Probability of severity levels for 4 and Male:
+
+Severity 3: 36.53%
+Severity 4: 12.69%
+Severity 7: 6.82%
+Severity 9: 3.24%
+Severity 5: 2.57%
+Severity 8: 1.47%
+Severity 6: 0.73%
+
